@@ -8,10 +8,15 @@ namespace CalculatorApi
     {
         public static void ConfigureApi(this WebApplication app)
         {
-            //mapping methods
-            app.MapGet("/calculation", GetHistory);
+            //endpoints
+            app.MapGet("/history", GetHistory);
             app.MapGet("/calculation/{id}", GetCalculationById);
-            app.MapPost("/calculate/", InsertCalculations);
+            app.MapPost("/add/", Add);
+            app.MapPost("/substract/", Substract);
+            app.MapPost("/devide/", Devide);
+            app.MapPost("/multiply/", Multiply);
+            app.MapPost("/power", Power);
+            app.MapPost("/combinedOperation", CombineOperation);
             app.MapPut("/calculation", UpdateCalculations);
             app.MapDelete("/calculation", DeleteCalculation);
         }
@@ -43,11 +48,75 @@ namespace CalculatorApi
             }
         }
 
-        private static async Task<IResult> InsertCalculations(CalculationModel calculation, ICalculations data, string expression)
+        private static async Task<IResult> Add(CalculationModel calculation, ICalculations data, string expression)
         {
             try
             {
-                await data.InsertCalculation(calculation, expression);
+                await data.InsertAdd(calculation, expression);
+                return Results.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+
+        private static async Task<IResult> Substract(CalculationModel calculation, ICalculations data, string expression)
+        {
+            try
+            {
+                await data.InsertSubstract(calculation, expression);
+                return Results.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+
+        private static async Task<IResult> Devide(CalculationModel calculation, ICalculations data, string expression)
+        {
+            try
+            {
+                await data.InsertDevide(calculation, expression);
+                return Results.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+
+        private static async Task<IResult> Multiply(CalculationModel calculation, ICalculations data, string expression)
+        {
+            try
+            {
+                await data.InsertMultiply(calculation, expression);
+                return Results.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+
+        private static async Task<IResult> Power(CalculationModel calculation, ICalculations data, string expression)
+        {
+            try
+            {
+                await data.InsertPower(calculation, expression);
+                return Results.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+        private static async Task<IResult> CombineOperation(CalculationModel calculation, ICalculations data, string expression)
+        {
+            try
+            {
+                await data.InsertCombine(calculation, expression);
                 return Results.Ok();
             }
             catch (Exception ex)

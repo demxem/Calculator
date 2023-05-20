@@ -9,18 +9,18 @@ namespace DataAccess.Models
 {
     public class CalculationModel
     {
-         public int Id { get; set; }
+        public int Id { get; set; }
 
-         [Required]
-         public string? Type { get; set; }
+        [Required]
+        public string? Type { get; set; }
 
-         [Required]
-         public string? Expression { get; set; }
+        [Required]
+        public string? Expression { get; set; }
 
-         [Required]
-         public DateTime CreationDate { get; set; }
+        [Required]
+        public DateTime CreationDate { get; set; }
 
-         public double Result { get; set; }
+        public double Result { get; set; }
       }
  }
 

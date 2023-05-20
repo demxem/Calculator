@@ -3,7 +3,6 @@
 	@Expression nvarchar(50),
 	@CreationDate Date,
 	@Result float
-
 AS
 begin
 	insert into dbo.[Calculations] ([Type], [Expression], [CreationDate], [Result])

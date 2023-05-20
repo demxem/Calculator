@@ -28,13 +28,110 @@ namespace DataAccess.Data
             return result.FirstOrDefault();
         }
 
-        public Task InsertCalculation(CalculationModel calculation, string expression)
+        public Task InsertAdd(CalculationModel calculation, string expression)
         {
-            var result = _calculator.Calculate(expression);
-            var type = _calculator.OperationType(expression);
+            var operationType = _calculator.OperationType(expression);
+            if (operationType.Equals("Addition"))
+            {
+                var result = _calculator.Calculate(expression);
+                return _dataAccess.SafeData("dbo.spCalculation_Create", new
+                {
+                    Type = operationType,
+                    Result = result,
+                    Expression = expression,
+                    CreationDate = DateTime.Now
+                });
+            }
 
-            return _dataAccess.SafeData("dbo.spCalculation_Create", new { Type = type, Result = result, calculation.Expression, calculation.CreationDate });
+            return Task.FromResult(false);
         }
+
+        public Task InsertSubstract(CalculationModel calculation, string expression)
+        {
+            var operationType = _calculator.OperationType(expression);
+            if (operationType.Equals("Subtract"))
+            {
+                var result = _calculator.Calculate(expression);
+                return _dataAccess.SafeData("dbo.spCalculation_Create", new
+                {
+                    Type = operationType,
+                    Result = result,
+                    Expression = expression,
+                    CreationDate = DateTime.Now
+                });
+            }
+
+            return Task.FromResult(0);
+        }
+        public Task InsertMultiply(CalculationModel calculation, string expression)
+        {
+            var operationType = _calculator.OperationType(expression);
+            if (operationType.Equals("Multiply"))
+            {
+                var result = _calculator.Calculate(expression);
+                return _dataAccess.SafeData("dbo.spCalculation_Create", new
+                {
+                    Type = operationType,
+                    Result = result,
+                    Expression = expression,
+                    CreationDate = DateTime.Now
+                });
+            }
+
+            return Task.FromResult(0);
+        }
+
+        public Task InsertDevide(CalculationModel calculation, string expression)
+        {
+            var operationType = _calculator.OperationType(expression);
+            if (operationType.Equals("Divide"))
+            {
+                var result = _calculator.Calculate(expression);
+                return _dataAccess.SafeData("dbo.spCalculation_Create", new
+                {
+                    Type = operationType,
+                    Result = result,
+                    Expression = expression,
+                    CreationDate = DateTime.Now
+                });
+            }
+
+            return Task.FromResult(0);
+        }
+
+        public Task InsertPower(CalculationModel calculation, string expression)
+        {
+            var operationType = _calculator.OperationType(expression);
+            if (operationType.Equals("Power"))
+            {
+                var result = _calculator.Calculate(expression);
+                return _dataAccess.SafeData("dbo.spCalculation_Create", new
+                {
+                    Type = operationType,
+                    Result = result,
+                    Expression = expression,
+                    CreationDate = DateTime.Now
+                });
+            }
+
+            return Task.FromResult(0);
+        }
+
+        public Task InsertCombine(CalculationModel calculation, string expression)
+        {
+
+            var operationType = _calculator.OperationType(expression);
+            var result = _calculator.Calculate(expression);
+
+            return _dataAccess.SafeData("dbo.spCalculation_Create", new
+            {
+                Type = operationType,
+                Result = result,
+                Expression = expression,
+                CreationDate = DateTime.Now
+            });
+        }
+
 
         public async Task UpdateCalculation(CalculationModel calculation) =>
             await _dataAccess.SafeData("dbo.spCalculation_Update", calculation);

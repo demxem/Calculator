@@ -4,5 +4,5 @@
 	[Type] NVARCHAR(50) NOT NULL, 
     [Expression] NVARCHAR(50) NOT NULL, 
     [CreationDate] DATETIME NOT NULL, 
-    [Result] FLOAT NOT NULL,
+    [Result] FLOAT NOT NULL 
 );

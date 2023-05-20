@@ -2,8 +2,6 @@
 	@Id int
 AS
 begin
-
 	select * from dbo.[Calculations]
 	where [Id] = @Id;
-
 end

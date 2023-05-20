@@ -5,7 +5,6 @@
 	@CreationDate Date,
 	@Result float
 AS
-
 begin
 	update dbo.[Calculations]
 	set [Type] = @Type, [Expression] = @Expression, [CreationDate] = @CreationDate, [Result] = @Result
