@@ -1,4 +1,5 @@
-﻿using DataAccess.Data;
+﻿using Core.Services;
+using DataAccess.Data;
 using DataAccess.DataAccess;
 
 namespace CalculatorApi
@@ -17,6 +18,7 @@ namespace CalculatorApi
             builder.Services.AddSwaggerGen();
             builder.Services.AddSingleton<ICalculations, Calculations>();
             builder.Services.AddSingleton<ISqlAccess, SqlAccess>();
+            builder.Services.AddSingleton<ICalculator, Calculator>();
 
             var app = builder.Build();
 

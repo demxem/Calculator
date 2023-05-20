@@ -3,7 +3,7 @@
 AS
 begin
 
-select * from dbo.[Calculations]
-where [Id] = @Id;
+	select * from dbo.[Calculations]
+	where [Id] = @Id;
 
 end

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorApi", "Calculator
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{A6749ADB-1DAC-4809-83DB-2E5170089DD9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{7333517D-7B9C-43EA-86D7-BA1BBA5F84FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Infra\Core.csproj", "{7333517D-7B9C-43EA-86D7-BA1BBA5F84FD}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SqlDb", "SqlDb\SqlDb.sqlproj", "{C0157955-3EA8-4630-83EF-271BC696A57C}"
 EndProject
