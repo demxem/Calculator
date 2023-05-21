@@ -43,7 +43,7 @@ namespace DataAccess.Data
                 });
             }
 
-            return Task.FromResult(false);
+            return Task.FromException(new Exception("Only add operation is supported"));
         }
 
         public Task InsertSubstract(CalculationModel calculation, string expression)
@@ -61,7 +61,7 @@ namespace DataAccess.Data
                 });
             }
 
-            return Task.FromResult(0);
+            return Task.FromException(new Exception("Only subtract operation is supported"));
         }
         public Task InsertMultiply(CalculationModel calculation, string expression)
         {
@@ -78,7 +78,7 @@ namespace DataAccess.Data
                 });
             }
 
-            return Task.FromResult(0);
+            return Task.FromException(new Exception("Only multiply operation is supported"));
         }
 
         public Task InsertDevide(CalculationModel calculation, string expression)
@@ -96,7 +96,7 @@ namespace DataAccess.Data
                 });
             }
 
-            return Task.FromResult(0);
+            return Task.FromException(new Exception("Only divide operration is supported"));
         }
 
         public Task InsertPower(CalculationModel calculation, string expression)
@@ -114,7 +114,7 @@ namespace DataAccess.Data
                 });
             }
 
-            return Task.FromResult(0);
+            return Task.FromException(new Exception("Only power operation is supported"));
         }
 
         public Task InsertCombine(CalculationModel calculation, string expression)
