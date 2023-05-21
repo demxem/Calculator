@@ -17,6 +17,7 @@ namespace CalculatorApi
             app.MapPost("/multiply/", Multiply);
             app.MapPost("/power", Power);
             app.MapPost("/combinedOperation", CombineOperation);
+            app.MapPost("/modulo", Modulo);
             app.MapPut("/calculation", UpdateCalculations);
             app.MapDelete("/calculation", DeleteCalculation);
         }
@@ -112,6 +113,20 @@ namespace CalculatorApi
                 return Results.Problem(ex.Message);
             }
         }
+
+        private static async Task<IResult> Modulo(CalculationModel calculation, ICalculations data, string expression)
+        {
+            try
+            {
+                await data.InsertModulo(calculation, expression);
+                return Results.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+
         private static async Task<IResult> CombineOperation(CalculationModel calculation, ICalculations data, string expression)
         {
             try

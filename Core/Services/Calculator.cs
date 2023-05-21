@@ -13,8 +13,7 @@ using System.Threading.Tasks;
 
 namespace Core.Services
 {
-
-        public static class ExpressionParser
+        public static class Calculator
         {
             public static Expression<Func<double>> ParseExpression(string expression)
             {
@@ -32,8 +31,9 @@ namespace Core.Services
             static readonly Parser<ExpressionType> Divide = Operator("/", ExpressionType.Divide);
             static readonly Parser<ExpressionType> Modulo = Operator("%", ExpressionType.Modulo);
             static readonly Parser<ExpressionType> Power = Operator("^", ExpressionType.Power);
-
-            static readonly Parser<Expression> Function =
+            static readonly Parser<ExpressionType> Root = Operator("", ExpressionType.Dynamic);
+        
+        static readonly Parser<Expression> Function =
                 from name in Parse.Letter.AtLeastOnce().Text()
                 from lparen in Parse.Char('(')
                 from expr in Parse.Ref(() => Expr).DelimitedBy(Parse.Char(',').Token())
@@ -80,14 +80,14 @@ namespace Core.Services
 
             public static string OperationType(string expression)
             {
-
                 var sb = new StringBuilder();
 
                 var query = expression.Where(x => x.Equals('-')
                             || x.Equals('+')
                             || x.Equals('*')
                             || x.Equals('^')
-                            || x.Equals('/'));
+                            || x.Equals('/')
+                            || x.Equals('%'));
 
                 foreach (char ch in query)
                 {
@@ -96,7 +96,7 @@ namespace Core.Services
 
                 var operationType = sb.ToString();
 
-                var combineOperations = new Regex(@"[+*/-^]");
+                var combineOperations = new Regex(@"[+*/-^%]");
                 var matches = combineOperations.Matches(operationType);
 
                 // If arithmetic operators two or more type - combine
@@ -104,7 +104,6 @@ namespace Core.Services
                 {
                     return "Combine";
                 }
-
                 if (expression.Contains('+'))
                 {
                     return "Addition";
@@ -121,11 +120,14 @@ namespace Core.Services
                 {
                     return "Divide";
                 }
+                if (expression.Contains('%'))
+                {
+                    return "Modulo";
+                }
                 if (expression.Contains('^'))
                 {
                     return "Power";
                 }
-
                 return "Other";
             }
 

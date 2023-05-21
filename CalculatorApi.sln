@@ -11,6 +11,11 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SqlDb", "SqlDb\SqlDb.sqlpro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{107ACA84-BCF4-4BFF-B323-3C770B8956FC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{87EAB13A-A2DA-4E02-AF27-B6E4E71CF133}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\Calc\Readmy.md = ..\..\..\Desktop\Calc\Readmy.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

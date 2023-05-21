@@ -30,10 +30,10 @@ namespace DataAccess.Data
 
         public Task InsertAdd(CalculationModel calculation, string expression)
         {
-            var operationType = ExpressionParser.OperationType(expression);
+            var operationType = Calculator.OperationType(expression);
             if (operationType.Equals("Addition"))
             {
-                var result = ExpressionParser.Calculate(expression);
+                var result = Calculator.Calculate(expression);
                 return _dataAccess.SafeData("dbo.spCalculation_Create", new
                 {
                     Type = operationType,
@@ -48,10 +48,10 @@ namespace DataAccess.Data
 
         public Task InsertSubstract(CalculationModel calculation, string expression)
         {
-            var operationType = ExpressionParser.OperationType(expression);
+            var operationType = Calculator.OperationType(expression);
             if (operationType.Equals("Subtract"))
             {
-                var result = ExpressionParser.Calculate(expression);
+                var result = Calculator.Calculate(expression);
                 return _dataAccess.SafeData("dbo.spCalculation_Create", new
                 {
                     Type = operationType,
@@ -65,10 +65,10 @@ namespace DataAccess.Data
         }
         public Task InsertMultiply(CalculationModel calculation, string expression)
         {
-            var operationType = ExpressionParser.OperationType(expression);
+            var operationType = Calculator.OperationType(expression);
             if (operationType.Equals("Multiply"))
             {
-                var result = ExpressionParser.Calculate(expression);
+                var result = Calculator.Calculate(expression);
                 return _dataAccess.SafeData("dbo.spCalculation_Create", new
                 {
                     Type = operationType,
@@ -83,10 +83,10 @@ namespace DataAccess.Data
 
         public Task InsertDevide(CalculationModel calculation, string expression)
         {
-            var operationType = ExpressionParser.OperationType(expression);
+            var operationType = Calculator.OperationType(expression);
             if (operationType.Equals("Divide"))
             {
-                var result = ExpressionParser.Calculate(expression);
+                var result = Calculator.Calculate(expression);
                 return _dataAccess.SafeData("dbo.spCalculation_Create", new
                 {
                     Type = operationType,
@@ -101,10 +101,10 @@ namespace DataAccess.Data
 
         public Task InsertPower(CalculationModel calculation, string expression)
         {
-            var operationType = ExpressionParser.OperationType(expression);
-            if (operationType.Equals("Power"))
+            var operationType = Calculator.OperationType(expression);
+            if (operationType.Equals("Modulo"))
             {
-                var result = ExpressionParser.Calculate(expression);
+                var result = Calculator.Calculate(expression);
                 return _dataAccess.SafeData("dbo.spCalculation_Create", new
                 {
                     Type = operationType,
@@ -120,8 +120,8 @@ namespace DataAccess.Data
         public Task InsertCombine(CalculationModel calculation, string expression)
         {
 
-            var operationType = ExpressionParser.OperationType(expression);
-            var result = ExpressionParser.Calculate(expression);
+            var operationType = Calculator.OperationType(expression);
+            var result = Calculator.Calculate(expression);
 
             return _dataAccess.SafeData("dbo.spCalculation_Create", new
             {
@@ -132,6 +132,23 @@ namespace DataAccess.Data
             });
         }
 
+        public Task InsertModulo(CalculationModel calculation, string expression)
+        {
+            var operationType = Calculator.OperationType(expression);
+            if (operationType.Equals("Modulo"))
+            {
+                var result = Calculator.Calculate(expression);
+                return _dataAccess.SafeData("dbo.spCalculation_Create", new
+                {
+                    Type = operationType,
+                    Result = result,
+                    Expression = expression,
+                    CreationDate = DateTime.Now
+                });
+            }
+
+            return Task.FromException(new Exception("Only modulo operation is supported"));
+        }
 
         public async Task UpdateCalculation(CalculationModel calculation) =>
             await _dataAccess.SafeData("dbo.spCalculation_Update", calculation);
