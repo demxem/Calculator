@@ -46,7 +46,7 @@ namespace DataAccess.Data
             return Task.FromException(new Exception("Only add operation is supported"));
         }
 
-        public Task InsertSubstract(CalculationModel calculation, string expression)
+        public Task InsertSubtract(CalculationModel calculation, string expression)
         {
             var operationType = Calculator.OperationType(expression);
             if (operationType.Equals("Subtract"))

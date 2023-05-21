@@ -12,7 +12,7 @@ namespace DataAccess.Data
         Task InsertDevide(CalculationModel calculation, string expression);
         Task InsertMultiply(CalculationModel calculation, string expression);
         Task InsertPower(CalculationModel calculation, string expression);
-        Task InsertSubstract(CalculationModel calculation, string expression);
+        Task InsertSubtract(CalculationModel calculation, string expression);
         Task InsertModulo(CalculationModel calculation, string expression);
         Task UpdateCalculation(CalculationModel calculation);
     }

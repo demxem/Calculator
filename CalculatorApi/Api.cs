@@ -12,7 +12,7 @@ namespace CalculatorApi
             app.MapGet("/history", GetHistory);
             app.MapGet("/calculation/{id}", GetCalculationById);
             app.MapPost("/add/", Add);
-            app.MapPost("/substract/", Substract);
+            app.MapPost("/subtract/", Subtract);
             app.MapPost("/devide/", Devide);
             app.MapPost("/multiply/", Multiply);
             app.MapPost("/power", Power);
@@ -62,11 +62,11 @@ namespace CalculatorApi
             }
         }
 
-        private static async Task<IResult> Substract(CalculationModel calculation, ICalculations data, string expression)
+        private static async Task<IResult> Subtract(CalculationModel calculation, ICalculations data, string expression)
         {
             try
             {
-                await data.InsertSubstract(calculation, expression);
+                await data.InsertSubtract(calculation, expression);
                 return Results.Ok();
             }
             catch (Exception ex)

@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[spCalculation_Create]
 	@Type nvarchar(50),
 	@Expression nvarchar(50),
-	@CreationDate Date,
+	@CreationDate datetime,
 	@Result float
 AS
 begin

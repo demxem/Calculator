@@ -31,7 +31,6 @@ namespace Core.Services
             static readonly Parser<ExpressionType> Divide = Operator("/", ExpressionType.Divide);
             static readonly Parser<ExpressionType> Modulo = Operator("%", ExpressionType.Modulo);
             static readonly Parser<ExpressionType> Power = Operator("^", ExpressionType.Power);
-            static readonly Parser<ExpressionType> Root = Operator("", ExpressionType.Dynamic);
         
         static readonly Parser<Expression> Function =
                 from name in Parse.Letter.AtLeastOnce().Text()
