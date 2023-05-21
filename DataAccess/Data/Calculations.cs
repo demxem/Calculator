@@ -10,12 +10,12 @@ namespace DataAccess.Data
     public class Calculations : ICalculations
     {
         private readonly ISqlAccess _dataAccess;
-        private readonly ICalculator _calculator;
 
-        public Calculations(ISqlAccess dataAccess, ICalculator calculator)
+
+        public Calculations(ISqlAccess dataAccess)
         {
             _dataAccess = dataAccess;
-            _calculator = calculator;
+
         }
 
         public async Task<IEnumerable<CalculationModel>> GetAll() =>
@@ -30,10 +30,10 @@ namespace DataAccess.Data
 
         public Task InsertAdd(CalculationModel calculation, string expression)
         {
-            var operationType = _calculator.OperationType(expression);
+            var operationType = ExpressionParser.OperationType(expression);
             if (operationType.Equals("Addition"))
             {
-                var result = _calculator.Calculate(expression);
+                var result = ExpressionParser.Calculate(expression);
                 return _dataAccess.SafeData("dbo.spCalculation_Create", new
                 {
                     Type = operationType,
@@ -48,10 +48,10 @@ namespace DataAccess.Data
 
         public Task InsertSubstract(CalculationModel calculation, string expression)
         {
-            var operationType = _calculator.OperationType(expression);
+            var operationType = ExpressionParser.OperationType(expression);
             if (operationType.Equals("Subtract"))
             {
-                var result = _calculator.Calculate(expression);
+                var result = ExpressionParser.Calculate(expression);
                 return _dataAccess.SafeData("dbo.spCalculation_Create", new
                 {
                     Type = operationType,
@@ -65,10 +65,10 @@ namespace DataAccess.Data
         }
         public Task InsertMultiply(CalculationModel calculation, string expression)
         {
-            var operationType = _calculator.OperationType(expression);
+            var operationType = ExpressionParser.OperationType(expression);
             if (operationType.Equals("Multiply"))
             {
-                var result = _calculator.Calculate(expression);
+                var result = ExpressionParser.Calculate(expression);
                 return _dataAccess.SafeData("dbo.spCalculation_Create", new
                 {
                     Type = operationType,
@@ -83,10 +83,10 @@ namespace DataAccess.Data
 
         public Task InsertDevide(CalculationModel calculation, string expression)
         {
-            var operationType = _calculator.OperationType(expression);
+            var operationType = ExpressionParser.OperationType(expression);
             if (operationType.Equals("Divide"))
             {
-                var result = _calculator.Calculate(expression);
+                var result = ExpressionParser.Calculate(expression);
                 return _dataAccess.SafeData("dbo.spCalculation_Create", new
                 {
                     Type = operationType,
@@ -101,10 +101,10 @@ namespace DataAccess.Data
 
         public Task InsertPower(CalculationModel calculation, string expression)
         {
-            var operationType = _calculator.OperationType(expression);
+            var operationType = ExpressionParser.OperationType(expression);
             if (operationType.Equals("Power"))
             {
-                var result = _calculator.Calculate(expression);
+                var result = ExpressionParser.Calculate(expression);
                 return _dataAccess.SafeData("dbo.spCalculation_Create", new
                 {
                     Type = operationType,
@@ -120,8 +120,8 @@ namespace DataAccess.Data
         public Task InsertCombine(CalculationModel calculation, string expression)
         {
 
-            var operationType = _calculator.OperationType(expression);
-            var result = _calculator.Calculate(expression);
+            var operationType = ExpressionParser.OperationType(expression);
+            var result = ExpressionParser.Calculate(expression);
 
             return _dataAccess.SafeData("dbo.spCalculation_Create", new
             {

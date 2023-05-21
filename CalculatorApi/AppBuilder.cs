@@ -18,7 +18,7 @@ namespace CalculatorApi
             builder.Services.AddSwaggerGen();
             builder.Services.AddSingleton<ICalculations, Calculations>();
             builder.Services.AddSingleton<ISqlAccess, SqlAccess>();
-            builder.Services.AddSingleton<ICalculator, Calculator>();
+           
 
             var app = builder.Build();
 
