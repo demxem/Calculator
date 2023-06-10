@@ -1,5 +1,5 @@
 <h1>Rest Api for Calculator</h1>
-  <p>I is a simple Rest Api with endpoints for calculator with working parser</p>
+  <p>It is a simple Rest Api with endpoints for calculator with working parser</p>
  
  <h1>What I learned</h1>
   <p>A rest Api infrastructure using C# and .Net</p>
